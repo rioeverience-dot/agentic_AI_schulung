@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agentic AI Schulung Vercel"
+  short_description: "Deploy this landing page safely to Vercel"
+  default_prompt: "Use $agentic-ai-schulung-vercel to update the Agentic AI Schulung landing page and publish it through GitHub so Vercel deploys landingpage.html."
