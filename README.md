@@ -14,6 +14,16 @@ In GitHub Pages als Source auswaehlen:
 - Branch: `main`
 - Folder: `/docs`
 
+## Vercel
+
+Vercel deployt bewusst die allgemeine Standalone-Landingpage, nicht die React/Vite-Hero-Video-Version.
+
+- Quelle: `landingpage.html`
+- Build Command: `npm run build:vercel`
+- Output Directory: `vercel-static`
+
+Die Datei `vercel.json` setzt diese Werte fuer das verbundene Vercel-Projekt. Beim Deployment kopiert `scripts/build-vercel-static.mjs` die aktuelle `landingpage.html` nach `vercel-static/index.html` und uebernimmt das lokale Logo.
+
 ## Landingpage Varianten
 
 Diese Landingpage liegt bewusst als einfache HTML-Datei vor, aehnlich wie HTML-Slides.
