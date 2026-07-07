@@ -1,4 +1,20 @@
-# Landingpage Varianten
+# agentic_AI_schulung
+
+Landingpage fuer die Agentic-AI-Schulung.
+
+## GitHub Pages
+
+Die GitHub-Pages-Version liegt in `docs/`.
+
+- `docs/index.html`
+- `docs/assets/everience-logo.png`
+
+In GitHub Pages als Source auswaehlen:
+
+- Branch: `main`
+- Folder: `/docs`
+
+## Landingpage Varianten
 
 Diese Landingpage liegt bewusst als einfache HTML-Datei vor, aehnlich wie HTML-Slides.
 
