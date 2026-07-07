@@ -39,14 +39,28 @@
         box-sizing: border-box;
       }
 
+      img,
+      video,
+      svg {
+        max-width: 100%;
+      }
+
       html {
+        max-width: 100%;
+        overflow-x: clip;
         scroll-padding-top: 88px;
         scroll-behavior: smooth;
       }
 
       body {
         margin: 0;
-        overflow-x: hidden;
+        max-width: 100%;
+        overflow-x: clip;
+      }
+
+      main,
+      section {
+        max-width: 100%;
       }
 
       a {
@@ -79,6 +93,7 @@
       .brand {
         font-weight: 600;
         letter-spacing: -0.03em;
+        min-width: 0;
       }
 
       .brand-mark {
@@ -128,7 +143,7 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr);
         min-height: 100svh;
-        overflow: hidden;
+        overflow: clip;
         padding: clamp(116px, 16vh, 170px) clamp(18px, 6vw, 84px) 70px;
         position: relative;
       }
@@ -403,6 +418,8 @@
         border-radius: 999px;
         color: var(--blue-800);
         font-weight: 500;
+        max-width: 100%;
+        overflow-wrap: anywhere;
         padding: 10px 14px;
         transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease, color 220ms ease, transform 220ms ease;
       }
@@ -423,7 +440,7 @@
         --trail-angle: 0deg;
         --trail-length: 0px;
         --trail-opacity: 0;
-        overflow: hidden;
+        overflow: clip;
         padding: clamp(76px, 11vw, 145px) clamp(18px, 6vw, 84px);
         position: relative;
         scroll-margin-top: 88px;
@@ -493,6 +510,19 @@
         display: grid;
         gap: 52px;
         grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1fr);
+      }
+
+      .intro > *,
+      .split > *,
+      .people > *,
+      .impact > *,
+      .grid > *,
+      .metrics > *,
+      .level > *,
+      .module-strip > *,
+      .module-detail-grid > *,
+      .product-grid > * {
+        min-width: 0;
       }
 
       .expertise {
@@ -674,7 +704,7 @@
         color: var(--blue-800);
         display: grid;
         gap: 12px;
-        grid-template-columns: 56px 1fr;
+        grid-template-columns: 56px minmax(0, 1fr);
         padding: 10px 16px 10px 10px;
       }
 
@@ -783,7 +813,7 @@
           linear-gradient(145deg, rgba(16, 1, 56, 0.94), rgba(26, 4, 86, 0.92)),
           radial-gradient(circle at 50% 30%, rgba(255, 70, 146, 0.28), transparent 34%);
         color: #ffffff;
-        overflow: hidden;
+        overflow: clip;
         text-align: center;
       }
 
@@ -814,6 +844,7 @@
             radial-gradient(circle at 72% 24%, rgba(255, 70, 146, 0.28), transparent 30%),
             linear-gradient(180deg, #fdfdff 0%, #f4f1ff 58%, #100138 100%);
           grid-template-columns: 1fr;
+          min-height: auto;
           padding-top: clamp(164px, 22vh, 210px);
         }
 
@@ -833,7 +864,7 @@
         .hero-content {
           grid-column: 1;
           grid-row: 1;
-          max-width: 760px;
+          max-width: min(760px, 100%);
         }
 
         .intro,
@@ -852,14 +883,80 @@
       }
 
       @media (max-width: 620px) {
+        .topbar {
+          gap: 14px;
+          padding: 14px 18px;
+        }
+
+        .brand {
+          font-size: 0.94rem;
+        }
+
+        .brand-mark {
+          flex: 0 0 26px;
+          height: 26px;
+          width: 26px;
+        }
+
+        h1,
+        h2,
+        h3,
+        p,
+        li {
+          overflow-wrap: anywhere;
+        }
+
         h1 {
-          font-size: clamp(3rem, 17vw, 4.6rem);
+          font-size: clamp(2.55rem, 13vw, 3.8rem);
+          letter-spacing: -0.045em;
+        }
+
+        h2 {
+          font-size: clamp(2rem, 10vw, 3rem);
+          letter-spacing: -0.045em;
+        }
+
+        .lead,
+        .intro p,
+        .copy p,
+        .final p {
+          font-size: 1rem;
+          line-height: 1.58;
         }
 
         .section,
         .hero {
           padding-left: 18px;
           padding-right: 18px;
+        }
+
+        .hero {
+          padding-bottom: 58px;
+          padding-top: 154px;
+        }
+
+        .hero-identity {
+          border-radius: 1.35rem 1.35rem 0 1.35rem;
+          right: 18px;
+          top: 74px;
+          width: clamp(96px, 30vw, 142px);
+        }
+
+        .info-pills {
+          gap: 8px;
+          margin-top: 28px;
+        }
+
+        .info-pills a {
+          border-radius: 1.2rem;
+          flex: 1 1 100%;
+          padding: 10px 12px;
+        }
+
+        .intro,
+        .split,
+        .people {
+          gap: 34px;
         }
 
         .grid,
@@ -872,6 +969,79 @@
 
         .network-globe {
           min-height: 300px;
+        }
+
+        .card,
+        .product-card,
+        .module-chip,
+        .module-card,
+        .hands-video,
+        .people-visual {
+          border-radius: 1.35rem;
+        }
+
+        .card,
+        .product-card,
+        .module-card {
+          padding: 20px;
+        }
+
+        .module-chip {
+          min-height: auto;
+          padding: 14px;
+        }
+
+        .level {
+          align-items: start;
+          border-radius: 1.35rem;
+          grid-template-columns: 42px minmax(0, 1fr);
+          padding: 10px 12px 12px 10px;
+        }
+
+        .level strong {
+          height: 36px;
+        }
+
+        .metric strong {
+          font-size: 2.35rem;
+        }
+
+        .people-visual {
+          min-height: 300px;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .section,
+        .hero {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+
+        .topbar {
+          padding-left: 14px;
+          padding-right: 14px;
+        }
+
+        h1 {
+          font-size: clamp(2.25rem, 12.5vw, 3.15rem);
+        }
+
+        h2 {
+          font-size: clamp(1.78rem, 9vw, 2.45rem);
+        }
+
+        .hero-identity {
+          right: 14px;
+          width: clamp(88px, 29vw, 120px);
+        }
+
+        .network-globe {
+          min-height: 240px;
+        }
+
+        .people-visual {
+          min-height: 250px;
         }
       }
 
