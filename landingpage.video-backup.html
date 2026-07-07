@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Von Prompts zu Agentic AI: Eine informative Schulungsseite ueber KI-Agenten, agentische Workflows, Wissensorganisation, Kostenkontrolle und Governance."
+    />
+    <title>Von Prompts zu Agentic AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --pink-400: #ff4692;
+        --pink-500: #e40d7c;
+        --blue-900: #100138;
+        --blue-800: #1a0456;
+        --blue-600: #5867c8;
+        --blue-200: #bab4cc;
+        --blue-100: #e0dfff;
+        --purple-600: #5122d0;
+        --purple-400: #690082;
+        --grey-900: #05000f;
+        --grey-800: #1a1a1a;
+        --grey-700: #757575;
+        --grey-100: #fdfdff;
+        --gradient-1: radial-gradient(111.05% 176.21% at 7.66% 96.39%, #191255 17.83%, #58136e 43.27%, #c01484 76.83%, #9b1365 100%);
+        color: var(--blue-800);
+        background: var(--grey-100);
+        font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-synthesis: none;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+      }
+
+      .topbar {
+        align-items: center;
+        backdrop-filter: blur(20px);
+        background: rgba(253, 253, 255, 0.82);
+        border-bottom: 1px solid rgba(26, 4, 86, 0.08);
+        display: flex;
+        justify-content: space-between;
+        left: 0;
+        padding: 18px clamp(18px, 4vw, 64px);
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: 20;
+      }
+
+      .brand,
+      .section-map {
+        align-items: center;
+        display: flex;
+        gap: 12px;
+      }
+
+      .brand {
+        font-weight: 600;
+        letter-spacing: -0.03em;
+      }
+
+      .brand-mark {
+        background:
+          radial-gradient(circle at 35% 35%, #ffffff 0 14%, transparent 15%),
+          linear-gradient(135deg, var(--pink-400), var(--purple-600));
+        border-radius: 999px;
+        box-shadow: 0 0 28px rgba(255, 70, 146, 0.5);
+        height: 30px;
+        width: 30px;
+      }
+
+      .section-map {
+        color: rgba(26, 4, 86, 0.68);
+        flex-wrap: wrap;
+        font-size: 0.82rem;
+        justify-content: flex-end;
+      }
+
+      .section-map span {
+        border: 1px solid rgba(26, 4, 86, 0.12);
+        border-radius: 999px;
+        padding: 7px 11px;
+      }
+
+      .hero {
+        background:
+          radial-gradient(circle at 78% 25%, rgba(255, 70, 146, 0.32), transparent 28%),
+          linear-gradient(110deg, #fdfdff 0%, #f5f2ff 46%, #100138 47%, #05000f 100%);
+        min-height: 100svh;
+        overflow: hidden;
+        padding: clamp(116px, 16vh, 170px) clamp(18px, 6vw, 84px) 70px;
+        position: relative;
+      }
+
+      .hero::after {
+        background:
+          linear-gradient(90deg, rgba(253, 253, 255, 0.96), rgba(253, 253, 255, 0.78) 38%, rgba(253, 253, 255, 0.02) 67%),
+          linear-gradient(180deg, transparent 76%, var(--grey-100));
+        content: "";
+        inset: 0;
+        position: absolute;
+      }
+
+      .hero-content {
+        max-width: 820px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .eyebrow {
+        color: var(--pink-400);
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        margin: 0 0 18px;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1,
+      h2 {
+        color: var(--blue-800);
+        font-weight: 600;
+        letter-spacing: -0.06em;
+        line-height: 1.03;
+      }
+
+      h1 {
+        font-size: clamp(3.6rem, 10vw, 8.2rem);
+        margin-bottom: 28px;
+      }
+
+      h2 {
+        font-size: clamp(2.2rem, 5.6vw, 5rem);
+        margin-bottom: 22px;
+      }
+
+      h3 {
+        color: var(--blue-800);
+        font-size: 1.06rem;
+        letter-spacing: -0.04em;
+        margin-bottom: 10px;
+      }
+
+      .lead,
+      .intro p,
+      .copy p,
+      .final p {
+        color: rgba(26, 4, 86, 0.72);
+        font-size: clamp(1.04rem, 2vw, 1.34rem);
+        line-height: 1.68;
+      }
+
+      .hero-video {
+        aspect-ratio: 16 / 9;
+        border-radius: 3.75rem 3.75rem 0 3.75rem;
+        box-shadow: 0 34px 100px rgba(255, 70, 146, 0.28);
+        max-width: min(42vw, 680px);
+        min-width: 360px;
+        overflow: hidden;
+        position: absolute;
+        right: clamp(24px, 5vw, 84px);
+        top: 18vh;
+        width: 42vw;
+        z-index: 1;
+      }
+
+      .hero-video video,
+      .hands-video video {
+        height: 100%;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .info-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 34px;
+      }
+
+      .info-pills span {
+        background: rgba(255, 255, 255, 0.76);
+        border: 1px solid rgba(26, 4, 86, 0.12);
+        border-radius: 999px;
+        color: var(--blue-800);
+        font-weight: 500;
+        padding: 10px 14px;
+      }
+
+      .section {
+        padding: clamp(76px, 11vw, 145px) clamp(18px, 6vw, 84px);
+      }
+
+      .intro,
+      .split,
+      .people {
+        display: grid;
+        gap: 52px;
+        grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1fr);
+      }
+
+      .expertise {
+        background:
+          linear-gradient(180deg, #fdfdff 0%, #f4f1ff 100%),
+          radial-gradient(circle at top right, rgba(255, 70, 146, 0.22), transparent 34%);
+      }
+
+      .section-heading {
+        max-width: 950px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 18px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 44px;
+      }
+
+      .card,
+      .product-card,
+      .module-chip {
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid rgba(26, 4, 86, 0.08);
+        border-radius: 2.5rem;
+      }
+
+      .card {
+        min-height: 210px;
+        overflow: hidden;
+        padding: 24px;
+        position: relative;
+      }
+
+      .card::before {
+        background: linear-gradient(90deg, transparent, rgba(255, 70, 146, 0.9), transparent);
+        content: "";
+        height: 1px;
+        left: 18%;
+        position: absolute;
+        right: 18%;
+        top: 0;
+      }
+
+      .card p,
+      .product-card p {
+        color: var(--grey-700);
+        line-height: 1.62;
+      }
+
+      .orbit {
+        border: 1px solid rgba(255, 70, 146, 0.45);
+        border-radius: 999px;
+        height: 54px;
+        margin-bottom: 28px;
+        position: relative;
+        width: 54px;
+      }
+
+      .orbit::before {
+        background: linear-gradient(135deg, var(--pink-400), var(--purple-600));
+        border-radius: 999px;
+        content: "";
+        height: 18px;
+        left: 17px;
+        position: absolute;
+        top: 17px;
+        width: 18px;
+      }
+
+      .impact {
+        background: var(--gradient-1);
+        color: #ffffff;
+        display: grid;
+        gap: 40px;
+        grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
+      }
+
+      .impact h2,
+      .impact .eyebrow,
+      .final h2,
+      .final .eyebrow {
+        color: #ffffff;
+      }
+
+      .impact p,
+      .final p {
+        color: rgba(255, 255, 255, 0.74);
+      }
+
+      .metrics {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 38px;
+      }
+
+      .metric {
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        padding-top: 18px;
+      }
+
+      .metric strong {
+        color: #ffffff;
+        display: block;
+        font-size: 3rem;
+        font-weight: 500;
+        letter-spacing: -0.06em;
+      }
+
+      .metric span {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .network-globe {
+        aspect-ratio: 1;
+        background:
+          radial-gradient(circle at 50% 48%, rgba(255, 70, 146, 0.7), transparent 3%),
+          repeating-radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.2) 0 1px, transparent 1px 44px),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0));
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 50%;
+        box-shadow: 0 28px 90px rgba(255, 70, 146, 0.28);
+        min-height: 360px;
+        position: relative;
+      }
+
+      .network-globe::before,
+      .network-globe::after {
+        border: 1px solid rgba(255, 70, 146, 0.48);
+        border-radius: 50%;
+        content: "";
+        inset: 13%;
+        position: absolute;
+        transform: rotateX(68deg);
+      }
+
+      .network-globe::after {
+        inset: 7%;
+        transform: rotateY(65deg);
+      }
+
+      .hands-video {
+        aspect-ratio: 16 / 9;
+        background: var(--gradient-1);
+        border-radius: 2.5rem;
+        box-shadow: 0 28px 90px rgba(255, 70, 146, 0.18);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .check-list {
+        color: var(--blue-800);
+        display: grid;
+        gap: 14px;
+        list-style: none;
+        margin: 30px 0 0;
+        padding: 0;
+      }
+
+      .check-list li {
+        border-left: 2px solid var(--pink-400);
+        padding-left: 14px;
+      }
+
+      .learning {
+        background: linear-gradient(135deg, #f5f2ff, #ffffff 58%, #e0dfff);
+      }
+
+      .module-strip,
+      .product-grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 44px;
+      }
+
+      .module-chip {
+        align-items: center;
+        display: flex;
+        font-weight: 600;
+        gap: 12px;
+        min-height: 78px;
+        padding: 16px;
+      }
+
+      .module-chip span {
+        color: var(--pink-400);
+        font-size: 1.35rem;
+        font-weight: 600;
+      }
+
+      .people-visual {
+        aspect-ratio: 0.96;
+        background:
+          radial-gradient(circle at 50% 36%, rgba(255, 255, 255, 0.95), transparent 21%),
+          radial-gradient(circle at 48% 42%, rgba(255, 70, 146, 0.35), transparent 27%),
+          linear-gradient(160deg, #100138, #1a0456 58%, #f4f1ff 59%);
+        border-radius: 2.5rem;
+        min-height: 420px;
+        position: relative;
+      }
+
+      .people-visual::before {
+        background:
+          radial-gradient(circle at 50% 20%, #ffffff 0 10%, transparent 11%),
+          linear-gradient(180deg, #ffffff 0 54%, rgba(255, 255, 255, 0.2) 55% 100%);
+        border-radius: 999px 999px 40% 40%;
+        content: "";
+        height: 46%;
+        left: 50%;
+        position: absolute;
+        top: 22%;
+        transform: translateX(-50%);
+        width: 28%;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .product-card {
+        padding: 22px;
+      }
+
+      .product-card span {
+        color: var(--pink-400);
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+      }
+
+      .final {
+        background:
+          linear-gradient(145deg, rgba(16, 1, 56, 0.94), rgba(26, 4, 86, 0.92)),
+          radial-gradient(circle at 50% 30%, rgba(255, 70, 146, 0.28), transparent 34%);
+        color: #ffffff;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .final p {
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 820px;
+      }
+
+      .info-note {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+        color: #ffffff;
+        display: inline-flex;
+        font-weight: 500;
+        margin-top: 30px;
+        padding: 12px 18px;
+      }
+
+      @media (max-width: 960px) {
+        .section-map {
+          display: none;
+        }
+
+        .hero {
+          background:
+            radial-gradient(circle at 72% 24%, rgba(255, 70, 146, 0.28), transparent 30%),
+            linear-gradient(180deg, #fdfdff 0%, #f4f1ff 58%, #100138 100%);
+        }
+
+        .hero::after {
+          background: linear-gradient(180deg, rgba(253, 253, 255, 0.95), rgba(253, 253, 255, 0.78) 55%, rgba(253, 253, 255, 0.08));
+        }
+
+        .hero-video {
+          bottom: 32px;
+          max-width: none;
+          min-width: 0;
+          opacity: 0.5;
+          right: 18px;
+          top: auto;
+          width: min(560px, 86vw);
+        }
+
+        .intro,
+        .split,
+        .people,
+        .impact {
+          grid-template-columns: 1fr;
+        }
+
+        .grid,
+        .module-strip,
+        .product-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 620px) {
+        h1 {
+          font-size: clamp(3rem, 17vw, 4.6rem);
+        }
+
+        .section,
+        .hero {
+          padding-left: 18px;
+          padding-right: 18px;
+        }
+
+        .grid,
+        .module-strip,
+        .product-grid,
+        .metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .network-globe {
+          min-height: 300px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          scroll-behavior: auto !important;
+          transition-duration: 0.001ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark" aria-hidden="true"></span>Agentic AI Schulung</div>
+      <div class="section-map" aria-label="Seitenstruktur">
+        <span>Expertise</span>
+        <span>Impact</span>
+        <span>Human + Technology</span>
+        <span>Formate</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-video" aria-hidden="true">
+          <video src="https://d8j0ntlcm91z4.cloudfront.net/user_3G93ZFsZZNJ5bVNDWZcFzUKhPsg/hf_20260706_225652_d214b47b-cfaa-4add-a33b-ed34bcd128b3.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <div class="hero-content">
+          <p class="eyebrow">Von Prompts zu Agentic AI</p>
+          <h1>Welcome to a Symbiotic Future</h1>
+          <p class="lead">
+            Eine praxisnahe B2B-Schulung fuer Unternehmen, die aus ChatGPT, Copilot, Claude oder Gemini
+            produktive KI-Assistenten, Agenten und kontrollierbare Workflows entwickeln wollen.
+          </p>
+          <div class="info-pills" aria-label="Kernthemen">
+            <span>Agenten</span>
+            <span>Wissensorganisation</span>
+            <span>Governance</span>
+            <span>Kostenkontrolle</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro section">
+        <div>
+          <p class="eyebrow">Positionierung</p>
+          <h2>Vom Knowledge Management zur Agentic AI Organisation.</h2>
+        </div>
+        <p>
+          Der Markt bewegt sich weg von generischen Prompt-Kursen. Unternehmen fragen jetzt: Wie integrieren
+          wir KI in Prozesse? Wie organisieren wir Wissen KI-tauglich? Wie bleiben Datenschutz, EU AI Act,
+          Kosten und Qualitaet beherrschbar? Genau hier setzt diese Schulung an.
+        </p>
+      </section>
+
+      <section class="expertise section">
+        <div class="section-heading">
+          <p class="eyebrow">Expertise Matrix</p>
+          <h2>Neun Felder fuer produktive, verantwortungsvolle KI-Arbeit.</h2>
+        </div>
+        <div class="grid">
+          <article class="card"><div class="orbit"></div><h3>Generative AI</h3><p>LLMs, RAG, Copilots und Custom Assistants verstehen und gezielt einsetzen.</p></article>
+          <article class="card"><div class="orbit"></div><h3>Agentic Workflows</h3><p>Von Triggern, Tools und Entscheidungen zu wiederholbaren KI-Prozessen.</p></article>
+          <article class="card"><div class="orbit"></div><h3>Knowledge Management</h3><p>Wissen so strukturieren, dass Assistenten und Agenten damit arbeiten koennen.</p></article>
+          <article class="card"><div class="orbit"></div><h3>Service Desk AI</h3><p>Tickets, KB-Artikel und Supportprozesse mit KI produktiver machen.</p></article>
+          <article class="card"><div class="orbit"></div><h3>Governance & EU AI Act</h3><p>Datenschutz, Freigaben, Rollen und Human-in-the-loop sauber verankern.</p></article>
+          <article class="card"><div class="orbit"></div><h3>Cost Control</h3><p>Tokenkosten, Kontextfenster und Modellwahl wirtschaftlich kontrollieren.</p></article>
+          <article class="card"><div class="orbit"></div><h3>Coding Agents</h3><p>Automatisierung und interne Mini-Tools ohne Entwicklerjargon nutzen.</p></article>
+          <article class="card"><div class="orbit"></div><h3>Intelligent Workplace</h3><p>Microsoft 365, SharePoint, Copilot und interne Services verbinden.</p></article>
+          <article class="card"><div class="orbit"></div><h3>Transformation Roadmap</h3><p>Realistische Use Cases priorisieren und erste Schritte belastbar planen.</p></article>
+        </div>
+      </section>
+
+      <section class="impact section">
+        <div>
+          <p class="eyebrow">Global Impact</p>
+          <h2>Skalierbar denken. Verantwortlich umsetzen.</h2>
+          <p>
+            Die Schulung verbindet Service Desk, Knowledge Management, Conversational AI,
+            Prozessautomatisierung und Governance zu einem belastbaren Betriebsmodell fuer Agentic AI.
+          </p>
+          <div class="metrics">
+            <div class="metric"><strong>5</strong><span>Autonomie-Level</span></div>
+            <div class="metric"><strong>8</strong><span>Praxis-Module</span></div>
+            <div class="metric"><strong>30</strong><span>Minuten bis zum ersten Assistenten</span></div>
+            <div class="metric"><strong>4</strong><span>Schulungsformate</span></div>
+          </div>
+        </div>
+        <div class="network-globe" aria-hidden="true"></div>
+      </section>
+
+      <section class="split section">
+        <div class="copy">
+          <p class="eyebrow">Human + Technology</p>
+          <h2>Menschen behalten die Kontrolle. Agenten uebernehmen die Wiederholung.</h2>
+          <p>
+            Ein Agent verfolgt Ziele, plant Zwischenschritte, nutzt Werkzeuge und kann Aufgaben ueber mehrere
+            Schritte ausfuehren. Teams lernen, wo Autonomie hilft, wo Freigaben notwendig sind und welche
+            Prozesse zuerst automatisiert werden sollten.
+          </p>
+          <ul class="check-list">
+            <li>Human-in-the-loop und Eskalationsregeln</li>
+            <li>Output-Formate, Qualitaetssicherung und Monitoring</li>
+            <li>RAG-faehige Wissensquellen statt Copy-Paste-Prozesse</li>
+          </ul>
+        </div>
+        <div class="hands-video" aria-hidden="true">
+          <video src="https://d8j0ntlcm91z4.cloudfront.net/user_3G93ZFsZZNJ5bVNDWZcFzUKhPsg/hf_20260706_225706_65b1f0b1-4ffd-48e3-acf4-8b6ae0aef5c8.mp4" autoplay muted loop playsinline></video>
+        </div>
+      </section>
+
+      <section class="learning section">
+        <div class="section-heading">
+          <p class="eyebrow">Learning Journey</p>
+          <h2>Vom gemeinsamen Verstaendnis zum eigenen KI-Agenten.</h2>
+        </div>
+        <div class="module-strip">
+          <div class="module-chip"><span>01</span>KI-Welt verstehen</div>
+          <div class="module-chip"><span>02</span>Chatbots, Assistenten und Agenten unterscheiden</div>
+          <div class="module-chip"><span>03</span>Eigene Assistenten bauen</div>
+          <div class="module-chip"><span>04</span>Coding Agents fuer Nicht-Programmierer</div>
+          <div class="module-chip"><span>05</span>Agentische Workflows automatisieren</div>
+          <div class="module-chip"><span>06</span>KI-taugliche Wissensstrukturen</div>
+          <div class="module-chip"><span>07</span>Tokens sparen und Kosten senken</div>
+          <div class="module-chip"><span>08</span>Governance, Datenschutz und EU AI Act</div>
+        </div>
+      </section>
+
+      <section class="people section">
+        <div class="people-visual" aria-hidden="true"></div>
+        <div>
+          <p class="eyebrow">People, Learning, Growth</p>
+          <h2>Teams lernen nicht nur Tools, sondern neue Arbeitsweisen.</h2>
+          <p>
+            Fuer Geschaeftsfuehrung, IT-Leitung, Knowledge Manager, Service Desk Manager,
+            Digitalisierungsverantwortliche, Process Owner und Fachbereiche. Mit konkreten Uebungen,
+            realistischen Use Cases und einer klaren Sprache ohne Entwicklerjargon.
+          </p>
+          <div class="product-grid">
+            <article class="product-card"><span>2 Stunden</span><h3>Executive Briefing</h3><p>Fuer Entscheider, IT-Leitung und Bereichsleitung. Marktueberblick, Risiken, Chancen und Roadmap.</p></article>
+            <article class="product-card"><span>1 Tag</span><h3>Practitioner Workshop</h3><p>Fuer Projektleiter, Knowledge Manager, Service Desk Manager und Fachbereiche. Mit Use Cases und Praxisuebungen.</p></article>
+            <article class="product-card"><span>2 Tage</span><h3>Agent Builder Bootcamp</h3><p>Fuer Power User, Process Owner und KI-Verantwortliche. Mit eigenem Agenten- oder Workflow-Prototyp.</p></article>
+            <article class="product-card"><span>1 Tag+</span><h3>Inhouse-Schulung</h3><p>Massgeschneidert fuer Teams, Prozesse, Wissensbestaende und Governance-Anforderungen.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="final section">
+        <p class="eyebrow">Next Symbiotic Workplace</p>
+        <h2>Build the next symbiotic workplace.</h2>
+        <p>
+          Entwickeln Sie aus ersten KI-Erfahrungen belastbare Agenten, saubere Wissensstrukturen,
+          wirtschaftliche Workflows und Governance, die im Unternehmensalltag funktioniert.
+        </p>
+        <div class="info-note">Informative Schulungsuebersicht fuer LinkedIn, Web und interne Kommunikation</div>
+      </section>
+    </main>
+  </body>
+</html>
