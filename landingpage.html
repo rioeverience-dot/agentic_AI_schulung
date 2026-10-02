@@ -1972,90 +1972,6 @@
         transform: translateY(calc(var(--hp, 0) * -12vh));
       }
 
-      /* Hero: Video und Boomerang unverändert. Das Logo liegt im Video links der
-         Mitte, unten liegt der helle Nebel; der Text sitzt daher rechts, über dem
-         Nebel, mit zwei klaren Einstiegen. Am Handy bleibt die zentrierte Fassung. */
-      .hero-cta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        justify-content: center;
-        margin-top: 30px;
-      }
-
-      .hero-cta a {
-        border-radius: 999px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        padding: 13px 24px;
-        transition:
-          background 200ms var(--ease-out),
-          border-color 200ms var(--ease-out),
-          transform 160ms var(--ease-out);
-      }
-
-      .hero-cta .is-primary {
-        background: var(--pink-400);
-        box-shadow: 0 12px 30px -10px rgba(255, 70, 146, 0.65);
-        color: #ffffff;
-      }
-
-      .hero-cta .is-primary:hover {
-        background: var(--pink-500);
-      }
-
-      .hero-cta .is-ghost {
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-        background: rgba(5, 0, 15, 0.38);
-        border: 1px solid rgba(253, 253, 255, 0.32);
-        color: #fdfdff;
-      }
-
-      .hero-cta .is-ghost:hover {
-        background: rgba(253, 253, 255, 0.06);
-        border-color: rgba(253, 253, 255, 0.7);
-      }
-
-      .hero-cta a:active {
-        transform: scale(0.97);
-      }
-
-      .hero-cta a:focus-visible {
-        outline: 2px solid var(--pink-400);
-        outline-offset: 3px;
-      }
-
-      @media (min-width: 961px) {
-        .hero {
-          column-gap: clamp(20px, 3vw, 48px);
-          grid-template-columns: repeat(12, minmax(0, 1fr));
-          padding-bottom: 20vh;
-          padding-left: var(--pad-x);
-          padding-right: var(--pad-x);
-        }
-
-        .hero > .hero-content {
-          grid-column: 7 / -1;
-          margin-inline: 0;
-          max-width: 600px;
-          text-align: left;
-        }
-
-        .hero h1 {
-          font-size: clamp(2.6rem, 4.2vw, 4.1rem);
-        }
-
-        .hero .lead {
-          font-size: clamp(1rem, 1.25vw, 1.14rem);
-          max-width: 52ch;
-        }
-
-        .hero-cta {
-          justify-content: flex-start;
-        }
-      }
-
       .curtain > .intro {
         background: #ffffff;
         border-radius: var(--lip) var(--lip) 0 0;
@@ -4806,10 +4722,6 @@
             weg vom einzelnen Prompt, hin zu wiederverwendbaren Assistenten, KI-Agenten,
             agentischen Workflows und KI-tauglicher Wissensorganisation.
           </p>
-          <div class="hero-cta">
-            <a href="#module" class="is-primary" data-i18n="hero.cta1">Module ansehen</a>
-            <a href="#fazit" class="is-ghost" data-i18n="hero.cta2">Zur Anmeldung</a>
-          </div>
         </div>
         <a href="#positionierung" class="hero-orient" aria-label="Weiter zum Seiteninhalt scrollen" data-i18n-attr="aria-label:hero.orient.aria">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -5177,8 +5089,6 @@
             "hero.em.aria": "verstehen, managen und steuern",
             "hero.lead": "Diese Schulung richtet sich an Unternehmen, die bereits erste Erfahrungen mit ChatGPT, Copilot, Claude oder Gemini gesammelt haben und nun den nächsten Schritt gehen wollen: weg vom einzelnen Prompt, hin zu wiederverwendbaren Assistenten, KI-Agenten, agentischen Workflows und KI-tauglicher Wissensorganisation.",
             "hero.pills.aria": "Kernthemen",
-            "hero.cta1": "Module ansehen",
-            "hero.cta2": "Zur Anmeldung",
             "hero.pill1": "Agenten verstehen",
             "hero.pill2": "Assistenten bauen",
             "hero.pill3": "Workflows orchestrieren",
@@ -5275,8 +5185,6 @@
             "hero.em.aria": "comprendre, gérer et piloter",
             "hero.lead": "Cette formation s'adresse aux entreprises qui ont déjà acquis une première expérience de ChatGPT, Copilot, Claude ou Gemini et souhaitent maintenant passer à l'étape suivante : quitter le prompt isolé pour des assistants réutilisables, des agents IA, des workflows agentiques et une organisation des connaissances adaptée à l'IA.",
             "hero.pills.aria": "Thèmes clés",
-            "hero.cta1": "Voir les modules",
-            "hero.cta2": "S'inscrire",
             "hero.pill1": "Comprendre les agents",
             "hero.pill2": "Créer des assistants",
             "hero.pill3": "Orchestrer les workflows",
@@ -5373,8 +5281,6 @@
             "hero.em.aria": "understand, manage and control",
             "hero.lead": "This training is aimed at companies that have already gained initial experience with ChatGPT, Copilot, Claude or Gemini and now want to take the next step: moving away from the single prompt towards reusable assistants, AI agents, agentic workflows and AI-ready knowledge organisation.",
             "hero.pills.aria": "Key topics",
-            "hero.cta1": "View the modules",
-            "hero.cta2": "Register",
             "hero.pill1": "Understand agents",
             "hero.pill2": "Build assistants",
             "hero.pill3": "Orchestrate workflows",
