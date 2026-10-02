@@ -2988,6 +2988,13 @@
         opacity: 0;
       }
 
+      .scn.is-resetting *,
+      .scn.is-resetting *::before,
+      .scn.is-resetting *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
       .scn * {
         box-sizing: border-box;
       }
@@ -7339,7 +7346,9 @@
             timers.forEach(clearTimeout);
             timers = [];
             const loop = +r.dataset.loop || 10;
-            r.classList.remove("is-fading");
+            // Neustart ohne Übergänge zurücksetzen, sonst blenden die Elemente noch
+            // aus, während die Szene schon wieder einblendet (Endzustand blitzt auf).
+            r.classList.add("is-resetting");
             r.querySelectorAll("[data-t]").forEach((el) => {
               el.classList.remove("on");
               at(+el.dataset.t, () => el.classList.add("on"));
@@ -7412,6 +7421,9 @@
                 else at(+sec, move);
               });
             });
+            void r.offsetWidth;
+            r.classList.remove("is-resetting");
+            r.classList.remove("is-fading");
             at(loop - 0.55, () => r.classList.add("is-fading"));
             at(loop, run);
           };
