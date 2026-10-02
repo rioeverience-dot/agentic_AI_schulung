@@ -7,15 +7,18 @@
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "build:vercel": "node scripts/build-vercel-static.mjs",
+    "prepare:logo-dissolve": "node scripts/prepare-logo-frames.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "serve:dist": "node scripts/serve-dist.mjs"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.0.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "three": "^0.171.0"
+    "three": "^0.171.0",
+    "vite": "^6.0.7"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "sharp": "^0.35.3"
+  }
 }
