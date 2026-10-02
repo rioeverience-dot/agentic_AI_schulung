@@ -5992,8 +5992,9 @@
           let lastPy = 0;
 
           const heroScrollProgress = () => {
-            // Der Hero ist sticky (Vorhang-Übergang), daher Scrollweg statt rect.top.
-            return Math.min(1, Math.max(0, window.scrollY / Math.max(1, heroSection.offsetHeight)));
+            // Der Hero ist sticky (Vorhang-Übergang), daher am Vorhang-Container messen.
+            const top = heroSection.parentElement.getBoundingClientRect().top;
+            return Math.min(1, Math.max(0, -top / Math.max(1, heroSection.offsetHeight)));
           };
 
           const applyDepth = (px, py, scrollT) => {
@@ -6802,7 +6803,9 @@
             raf = cur !== target ? requestAnimationFrame(tick) : null;
           };
           const read = () => {
-            target = clamp(window.scrollY / (hero.offsetHeight * 0.9), 0, 1);
+            // Am Vorhang-Container messen (nicht am Seitenanfang): stimmt auch, wenn
+            // über dem Hero noch Inhalt liegt (z. B. eingebettet in WordPress).
+            target = clamp(-hero.parentElement.getBoundingClientRect().top / (hero.offsetHeight * 0.9), 0, 1);
             if (!raf) raf = requestAnimationFrame(tick);
           };
           window.addEventListener("scroll", read, { passive: true });
