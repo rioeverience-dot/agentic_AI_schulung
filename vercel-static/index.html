@@ -2669,8 +2669,73 @@
         }
       }
 
+      /* Tischauflage: helle, ruhige Fläche in der Kartenebene, grenzt den Tisch
+         ein und blendet mit dem Austeilen ein. Maße setzt das Layout-Skript. */
+      html.deck-ready .deck-table::before {
+        background:
+          radial-gradient(120% 90% at 50% 20%, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.34) 70%),
+          rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(26, 4, 86, 0.07);
+        border-radius: 30px;
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.9),
+          inset 0 0 0 7px rgba(255, 255, 255, 0.18),
+          0 18px 30px -24px rgba(16, 1, 56, 0.2);
+        content: "";
+        height: var(--mat-h, 100%);
+        left: var(--mat-x, 0);
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        top: var(--mat-y, 0);
+        transform: translateZ(-2px);
+        transition: opacity 1200ms var(--ease-out) 200ms;
+        width: var(--mat-w, 100%);
+      }
+
+      html.deck-ready .deck.is-dealt .deck-table::before {
+        opacity: 1;
+      }
+
+      /* Übergang zu Formate: Vorhang wie beim Hero. Module bleibt am unteren
+         Rand stehen, Formate zieht mit runder Kante darüber, darunter dimmt es. */
+      html.mod-curtain .section.learning {
+        position: sticky;
+        top: var(--mod-top, 0px);
+        z-index: 0;
+      }
+
+      html.mod-curtain .section.learning::after {
+        background: #100138;
+        content: "";
+        inset: 0;
+        opacity: calc(var(--mc, 0) * 0.16);
+        pointer-events: none;
+        position: absolute;
+        z-index: 3;
+      }
+
+      html.mod-curtain.deck-ready .deck {
+        transform: scale(calc(1 - var(--mc, 0) * 0.04));
+        transform-origin: 50% 100%;
+      }
+
+      html.mod-curtain .people-track {
+        border-radius: var(--lip) var(--lip) 0 0;
+        box-shadow: 0 -24px 48px -28px rgba(16, 1, 56, 0.22);
+        z-index: 1;
+      }
+
       /* Tablet/Handy: Fächer zum Wischen */
       @media (max-width: 760px) {
+        html.deck-ready .deck-table::before {
+          background: rgba(255, 255, 255, 0.55);
+          border-radius: 26px;
+          height: auto;
+          inset: -16px -14px;
+          width: auto;
+        }
+
         html.deck-ready .deck {
           height: auto;
           margin-inline: calc(-1 * var(--pad-x));
@@ -7711,6 +7776,7 @@
             const ch = cw * 1.4;
             const gap = cw * 0.14;
             const span = 4 * cw + 3 * gap;
+            let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
             cards.forEach((c, i) => {
               const row = i < 4 ? 0 : 1;
               const col = i % 4;
@@ -7723,7 +7789,15 @@
               c.style.setProperty("--base-z", row * 6 + i * 0.6 + "px");
               c.style.setProperty("--sx", W / 2 - cw / 2 - x + "px");
               c.style.setProperty("--sy", H * 0.3 - y + "px");
+              x0 = Math.min(x0, x); y0 = Math.min(y0, y);
+              x1 = Math.max(x1, x + cw); y1 = Math.max(y1, y + ch);
             });
+            // Tischauflage um die Karten; unten knapp, damit sie nicht an der Sektionskante abreißt
+            const px = cw * 0.2, pt = cw * 0.2, pb = cw * 0.06;
+            table.style.setProperty("--mat-x", x0 - px + "px");
+            table.style.setProperty("--mat-y", y0 - pt + "px");
+            table.style.setProperty("--mat-w", x1 - x0 + px * 2 + "px");
+            table.style.setProperty("--mat-h", y1 - y0 + pt + pb + "px");
           };
           layout();
           new ResizeObserver(layout).observe(deckEl);
@@ -7860,6 +7934,26 @@
             refreshGuide();
             if (dialog.open) fill(current);
           });
+        })();
+
+        /* --- 4b · Vorhang Module → Formate ------------------------------- */
+        (function moduleCurtain() {
+          const mod = document.querySelector(".section.learning");
+          const next = document.querySelector(".people-track");
+          if (!mod || !next || reduce) return;
+          document.documentElement.classList.add("mod-curtain");
+          const setTop = () => mod.style.setProperty("--mod-top", Math.min(0, window.innerHeight - mod.offsetHeight) + "px");
+          setTop();
+          window.addEventListener("resize", setTop);
+          new ResizeObserver(setTop).observe(mod);
+          let raf = null;
+          const read = () => {
+            raf = null;
+            const p = clamp(1 - next.getBoundingClientRect().top / window.innerHeight, 0, 1);
+            mod.style.setProperty("--mc", p.toFixed(4));
+          };
+          window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(read); }, { passive: true });
+          read();
         })();
 
         /* --- 5 · People: Sticky-Szenen ----------------------------------- */
