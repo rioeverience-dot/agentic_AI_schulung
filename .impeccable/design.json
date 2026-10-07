@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-18T16:00:00+02:00",
+  "title": "Design System: Agentic AI Schulung",
+  "extensions": {
+    "colorMeta": {
+      "signal-pink": {
+        "role": "primary",
+        "displayName": "Signal Pink",
+        "canonical": "#ff4692",
+        "tonalRamp": ["#4a001f", "#760036", "#a70050", "#d6006b", "#ff4692", "#ff79ad", "#ffaccb", "#ffe0ec"]
+      },
+      "action-pink": {
+        "role": "primary-dark",
+        "displayName": "Action Pink",
+        "canonical": "#e40d7c",
+        "tonalRamp": ["#43001f", "#700033", "#9e0050", "#c80069", "#e40d7c", "#f34d9b", "#fb91bf", "#ffdbea"]
+      },
+      "cognition-navy": {
+        "role": "background",
+        "displayName": "Cognition Navy",
+        "canonical": "#100138",
+        "tonalRamp": ["#05000f", "#100138", "#1a0456", "#2d0b78", "#5122d0", "#7c63db", "#aaa0e9", "#e0dfff"]
+      },
+      "connective-blue": {
+        "role": "secondary",
+        "displayName": "Connective Blue",
+        "canonical": "#5867c8",
+        "tonalRamp": ["#161b48", "#252d71", "#39459d", "#5867c8", "#7884d5", "#9ca5e1", "#c3c8ef", "#eceeff"]
+      }
+    },
+    "typographyMeta": {
+      "familyRule": "Poppins remains the single brand family; system sans-serif is the fallback.",
+      "displayTrackingFloor": "-0.04em",
+      "bodyMeasure": "65ch–75ch",
+      "labelStyle": "Poppins 600, uppercase, 0.15em tracking"
+    },
+    "shadows": [
+      {
+        "name": "header-depth",
+        "value": "0 14px 40px rgba(5, 0, 15, 0.34)",
+        "purpose": "Separates fixed navigation from moving imagery."
+      },
+      {
+        "name": "pink-interaction-glow",
+        "value": "0 26px 60px rgba(255, 70, 146, 0.18)",
+        "purpose": "Interactive card feedback only; never a permanent rest state."
+      },
+      {
+        "name": "final-action-lift",
+        "value": "0 12px 34px rgba(88, 103, 200, 0.34)",
+        "purpose": "Lifts the white final CTA from the navy conclusion."
+      }
+    ],
+    "motion": [
+      {
+        "name": "state-fast",
+        "value": "220ms ease",
+        "purpose": "Hover, focus and pressed-state transitions."
+      },
+      {
+        "name": "reveal-expressive",
+        "value": "600ms cubic-bezier(0.16, 0.8, 0.24, 1)",
+        "purpose": "Section reveals and deliberate spatial transitions."
+      },
+      {
+        "name": "dissolve-sequence",
+        "value": "620ms linear frame progression",
+        "purpose": "Forward logo fragmentation and reverse reconstruction."
+      }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "420px" },
+      { "name": "sm", "value": "620px" },
+      { "name": "md", "value": "767px" },
+      { "name": "lg", "value": "960px" }
+    ]
+  },
+  "components": [
+    {
+      "id": "ds-primary-cta",
+      "name": "Primary CTA",
+      "description": "High-signal registration action for light or neutral contexts.",
+      "html": "<a class=\"ds-primary-cta\" href=\"#registration\">Jetzt anmelden</a>",
+      "css": ".ds-primary-cta{display:inline-flex;align-items:center;justify-content:center;padding:15px 38px;border-radius:999px;background:linear-gradient(135deg,#ff4692,#e40d7c);color:#fdfdff;font:600 .76rem/1.2 Poppins,system-ui,sans-serif;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;transition:transform 220ms ease,box-shadow 220ms ease}.ds-primary-cta:hover,.ds-primary-cta:focus-visible{transform:translateY(-2px);box-shadow:0 12px 34px rgba(228,13,124,.28)}.ds-primary-cta:active{transform:scale(.97)}"
+    },
+    {
+      "id": "ds-final-cta",
+      "name": "Final CTA",
+      "description": "White conversion action placed on the Cognition Navy conclusion.",
+      "html": "<a class=\"ds-final-cta\" href=\"#registration\">Schulung anfragen</a>",
+      "css": ".ds-final-cta{display:inline-flex;align-items:center;justify-content:center;padding:15px 38px;border-radius:999px;background:#fdfdff;color:#1a0456;font:600 1.06rem/1.2 Poppins,system-ui,sans-serif;text-decoration:none;box-shadow:0 12px 34px rgba(88,103,200,.34);transition:color 220ms ease,transform 220ms ease,box-shadow 220ms ease}.ds-final-cta:hover,.ds-final-cta:focus-visible{color:#5867c8;transform:translateY(-2px);box-shadow:0 18px 42px rgba(88,103,200,.42)}.ds-final-cta:active{transform:scale(.97)}"
+    },
+    {
+      "id": "ds-navigation-pill",
+      "name": "Navigation Pill",
+      "description": "Compact section navigation on a dark header.",
+      "html": "<nav class=\"ds-nav-pill\" aria-label=\"Abschnitte\"><a href=\"#module\">Module</a><a href=\"#fazit\">Fazit</a></nav>",
+      "css": ".ds-nav-pill{display:inline-flex;gap:6px;padding:6px;border-radius:999px;background:#1a0456}.ds-nav-pill a{padding:10px 18px;border-radius:999px;color:#fdfdff;font:600 .76rem/1.2 Poppins,system-ui,sans-serif;letter-spacing:.08em;text-decoration:none;transition:background-color 220ms ease}.ds-nav-pill a:hover,.ds-nav-pill a:focus-visible{background:rgba(255,70,146,.22)}"
+    },
+    {
+      "id": "ds-content-card",
+      "name": "Content Card",
+      "description": "Flat-at-rest explanatory surface. New cards use the compact 1.35rem radius.",
+      "html": "<article class=\"ds-content-card\"><p class=\"ds-card-label\">MODUL 01</p><h3>Von Prompts zu Systemen</h3><p>Wiederholbare Arbeitsweisen statt einzelner Chat-Verläufe.</p></article>",
+      "css": ".ds-content-card{max-width:28rem;padding:24px;border:1px solid rgba(26,4,86,.12);border-radius:1.35rem;background:#fdfdff;color:#1a0456;font-family:Poppins,system-ui,sans-serif;transition:transform 220ms ease,box-shadow 220ms ease}.ds-content-card:hover,.ds-content-card:focus-within{transform:perspective(700px) rotateX(1deg) translateY(-2px);box-shadow:0 26px 60px rgba(255,70,146,.18)}.ds-content-card h3{margin:10px 0;font-size:1.06rem;line-height:1.2;letter-spacing:-.02em}.ds-content-card p{margin:0;color:#6b6b6b;line-height:1.68}.ds-card-label{color:#e40d7c!important;font-size:.76rem!important;font-weight:600;letter-spacing:.15em}"
+    },
+    {
+      "id": "ds-symbiotic-o",
+      "name": "Symbiotic O",
+      "description": "Two offset ring halves: Signal Pink above, white below, while retaining an accessible O.",
+      "html": "<span class=\"ds-symbiotic-o\" role=\"img\" aria-label=\"O\"><span class=\"ds-o-top\"></span><span class=\"ds-o-bottom\"></span></span>",
+      "css": ".ds-symbiotic-o{position:relative;display:inline-block;width:.82em;height:1em;vertical-align:-.08em}.ds-symbiotic-o>span{position:absolute;left:.07em;width:.68em;height:.68em;border:.11em solid;border-radius:50%}.ds-o-top{top:.04em;border-color:#ff4692!important;clip-path:inset(0 0 50% 0);transform:translateX(.055em)}.ds-o-bottom{top:.24em;border-color:#fdfdff!important;clip-path:inset(50% 0 0 0);transform:translateX(-.055em)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Symbiotic Workplace",
+    "overview": "A controlled transition from a deep, focused technology space to understandable action. Navy creates concentration, Signal Pink marks energy and transition, and white protects readability. Human, knowledge, processes and agents appear as one steerable system.",
+    "keyCharacteristics": [
+      "Deep Everience navy instead of a generic neutral SaaS canvas",
+      "CI pink used as a scarce signal rather than a default text color",
+      "Large responsive Poppins typography with a -0.04em tracking floor",
+      "One dominant motion event per viewport",
+      "Real motion assets with controlled loading and decoding",
+      "A complete static reduced-motion path"
+    ],
+    "rules": [
+      "Signal Pink marks action, transition or a brand moment.",
+      "Small text on white uses Action Pink or Interface Navy, never Signal Pink.",
+      "Cards remain flat at rest; elevation responds to interaction.",
+      "Brand marks do not float forever.",
+      "The Symbiotic O always has a pink upper half and white lower half.",
+      "landingpage.html is canonical; vercel-static/index.html is generated."
+    ],
+    "dos": [
+      "Separate hero, Human+Technology and conclusion into distinct motion jobs.",
+      "Load heavy sequences near the viewport and show an immediate poster.",
+      "Give every hover interaction touch and reduced-motion behavior.",
+      "Use Signal Pink for action, transition and rare brand moments.",
+      "Keep the Everience mark still between interactions.",
+      "Test desktop hover, touch return, reduced motion and Vercel asset paths."
+    ],
+    "donts": [
+      "Do not compose a generic AI SaaS page from repeated purple glows and card grids.",
+      "Do not make multiple animations compete for attention.",
+      "Do not rely on hover as the only interaction path.",
+      "Do not create scroll traps or pinned decoration that hides content.",
+      "Do not use editorial italics as a shortcut for premium branding.",
+      "Do not create new cards with 32px or larger radii.",
+      "Do not edit generated Vercel output directly."
+    ]
+  }
+}

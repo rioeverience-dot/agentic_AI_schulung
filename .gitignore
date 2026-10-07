@@ -3,3 +3,9 @@ node_modules/
 *.log
 .vercel/
 vercel-static/.vercel/
+
+# Agenten-Memory (lokal) - Claude liest es per Junction
+.agents/memory/
+
+# Claude-Skill-Junctions (Ziel liegt in .agents/skills)
+.claude/skills/
