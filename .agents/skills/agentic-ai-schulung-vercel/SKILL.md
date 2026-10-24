@@ -64,6 +64,17 @@ When publishing this project:
 - Push `main` to `origin` so connected Vercel can deploy from GitHub.
 - After push, report the commit hash and remind that Vercel should pick up the GitHub push automatically.
 
+## Preview vs. Live (since 2026-10-23)
+
+The public site is the WordPress embed; this Vercel page must stay private until Rio decides otherwise.
+
+- Vercel production branch is `live`, not `main`. A push to `main` only creates a protected preview.
+- Preview for review (Vercel login required): https://agentic-ai-schulung-git-main-ri-oeve.vercel.app
+- Only when Rio says "auf live": `git push origin main:live`. Vercel then builds the production deployment automatically.
+- The production deployment is public only once a domain is attached. None is attached on purpose (Rio wants his own domain later). On the first "auf live", ask which domain to attach; never attach one unasked.
+- Vercel Authentication stays `prod_deployment_urls_and_all_previews`.
+- Details and CLI commands: project memory `vercel-cli.md`.
+
 If `git push` fails due to network sandboxing, request escalation and retry.
 
 ## Failure Modes To Prevent
