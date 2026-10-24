@@ -2189,6 +2189,17 @@
             animation-range: entry 0% cover 32%;
             animation-timeline: --promise;
           }
+
+          /* Vorhang hält die Sektion an: die letzten Karten müssen fertig sein,
+             sobald sie ganz im Bild sind, sonst frieren sie halb eingeblendet ein. */
+          html.kern-curtain #kernversprechen .card.promise:nth-last-child(-n + 2),
+          html.kern-curtain #kernversprechen .card.promise:nth-last-child(-n + 2)::after {
+            animation-range: entry 0% entry 100%;
+          }
+
+          html.kern-curtain #kernversprechen .card.promise:nth-last-child(-n + 2) .orbit {
+            animation-range: entry 15% entry 100%;
+          }
         }
       }
 
@@ -2253,6 +2264,33 @@
         left: 0;
         position: absolute;
         right: 0;
+      }
+
+      /* Übergang Kernversprechen → Autonomie: Vorhang wie beim Hero. Kernversprechen
+         bleibt am unteren Rand stehen (nur innerhalb .kern-curtain), Autonomie zieht darüber. */
+      html.kern-curtain .section.expertise {
+        position: sticky;
+        top: var(--kern-top, 0px);
+        z-index: 0;
+      }
+
+      html.kern-curtain .section.expertise::after {
+        background: #05000f;
+        content: "";
+        inset: 0;
+        opacity: calc(var(--kc, 0) * 0.35);
+        pointer-events: none;
+        position: absolute;
+        z-index: 3;
+      }
+
+      html.kern-curtain .promise-layout {
+        transform: scale(calc(1 - var(--kc, 0) * 0.04));
+        transform-origin: 50% 100%;
+      }
+
+      html.kern-curtain .section.impact {
+        box-shadow: 0 -36px 80px -28px rgba(5, 0, 15, 0.45);
       }
 
       .impact .level-list {
@@ -5150,6 +5188,7 @@
       </section>
       </div>
 
+      <div class="kern-curtain">
       <section id="kernversprechen" class="expertise section hover-zone">
         <div class="promise-layout">
         <div class="section-heading reveal-item">
@@ -5298,6 +5337,7 @@
           </div>
         </div>
       </section>
+      </div>
 
       <section id="human-technology" class="symbiosis-track">
         <div class="symbiosis-stage hover-zone">
@@ -7204,6 +7244,26 @@
             visible = entries[0].isIntersecting;
             if (visible && !raf) raf = requestAnimationFrame(loop);
           }, { rootMargin: "120px 0px" }).observe(canvas);
+        })();
+
+        /* --- 3b · Vorhang Kernversprechen → Autonomie --------------------- */
+        (function kernCurtain() {
+          const kern = document.getElementById("kernversprechen");
+          const next = document.getElementById("autonomie");
+          if (!kern || !next || reduce) return;
+          document.documentElement.classList.add("kern-curtain");
+          const setTop = () => kern.style.setProperty("--kern-top", Math.min(0, window.innerHeight - kern.offsetHeight) + "px");
+          setTop();
+          window.addEventListener("resize", setTop);
+          new ResizeObserver(setTop).observe(kern);
+          let raf = null;
+          const read = () => {
+            raf = null;
+            const p = clamp(1 - next.getBoundingClientRect().top / window.innerHeight, 0, 1);
+            kern.style.setProperty("--kc", p.toFixed(4));
+          };
+          window.addEventListener("scroll", () => { if (!raf) raf = requestAnimationFrame(read); }, { passive: true });
+          read();
         })();
 
         /* --- 4 · Modul-Szenen ------------------------------------------- */
